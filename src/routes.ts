@@ -1,3 +1,6 @@
+import { ControllerChallengeOne } from './controllers/controller-challenge-one'
+import { palindromesBetweenRange } from './utils/palindrome/palindromesBetweenRange'
+
 async function routes(request, response) {
   const { method, url } = request
 
@@ -7,10 +10,10 @@ async function routes(request, response) {
     return response.end('Processo Seletivo Kukac 📦')
   }
 
-  if (method === 'POST' && url === '/challenges') {
-    response.writeHead(200)
+  if (method === 'POST' && url === '/challenges/one') {
+    const controller = new ControllerChallengeOne()
 
-    return response.end()
+    return controller.handle(request, response)
   }
 
   return response.end()
