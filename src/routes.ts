@@ -7,6 +7,12 @@ async function routes(request, response) {
     return response.end('Processo Seletivo Kukac 📦')
   }
 
+  if (method === 'POST' && url === '/challenges') {
+    response.writeHead(200)
+
+    return response.end()
+  }
+
   return response.end()
 }
 
