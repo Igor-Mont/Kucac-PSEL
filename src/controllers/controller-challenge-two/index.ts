@@ -6,11 +6,11 @@ class ControllerChallengeTwo {
 
     const service = new ServiceChallengeTwo()
     request
-      .on('data', data => {
+      .on('data', async data => {
         const { amount, total } = JSON.parse(data)
 
         try {
-          const sell = service.execute({ amount, total })
+          const sell = await service.execute({ amount, total })
           Object.assign(notes, {
             ...sell
           })

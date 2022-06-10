@@ -16,7 +16,7 @@ interface Sell {
 }
 
 class ServiceChallengeTwo {
-  execute({ amount, total }: Buy): Sell {
+  async execute({ amount, total }: Buy): Promise<Sell> {
     if (total > amount) throw new Error('Purchase price is higher.')
     const exchange = getNotes(amount, total)
 
