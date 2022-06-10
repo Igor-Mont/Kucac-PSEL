@@ -7,8 +7,16 @@ class ControllerChallengeOne {
     const service = new ServiceChallengeOne()
     request
       .on('data', async data => {
-        const range = JSON.parse(data)
-        users = service.execute(range)
+        const { start, end } = JSON.parse(data)
+
+        try {
+          users = service.execute({ start, end })
+        } catch (error) {
+          console.error(`Caught error in API ${error.stack}`)
+          response.writeHead(400)
+        
+          return response.end()
+        }
       })
       .on('end', () => {
         response.writeHead(200)
