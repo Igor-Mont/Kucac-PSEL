@@ -1,6 +1,4 @@
 function getNotes(amount, total) {
-  if (total > amount) throw new Error('Purchase price is higher.')
-
   const exchange = Math.abs(total - amount)
   
   const notes_100 = Math.floor(exchange/100)

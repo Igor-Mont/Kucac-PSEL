@@ -1,5 +1,5 @@
+import { ControllerChallengeTwo } from './controllers/controller-challenge-two'
 import { ControllerChallengeOne } from './controllers/controller-challenge-one'
-import { palindromesBetweenRange } from './utils/palindrome/palindromesBetweenRange'
 
 async function routes(request, response) {
   const { method, url } = request
@@ -12,6 +12,12 @@ async function routes(request, response) {
 
   if (method === 'POST' && url === '/challenges/one') {
     const controller = new ControllerChallengeOne()
+
+    return controller.handle(request, response)
+  }
+
+  if (method === 'POST' && url === '/challenges/two') {
+    const controller = new ControllerChallengeTwo()
 
     return controller.handle(request, response)
   }
