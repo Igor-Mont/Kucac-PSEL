@@ -6,7 +6,8 @@ interface Range {
 }
 
 class ServiceChallengeOne {
-  execute({ start, end }: Range): number[] {
+  async execute({ start, end }: Range): Promise<number[]> {
+    if (start > end) throw new Error('Invalid range.')
     const palindromes = palindromesBetweenRange(start, end)
 
     return palindromes

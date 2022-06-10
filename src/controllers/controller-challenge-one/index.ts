@@ -10,7 +10,7 @@ class ControllerChallengeOne {
         const { start, end } = JSON.parse(data)
 
         try {
-          users = service.execute({ start, end })
+          users = await service.execute({ start, end })
         } catch (error) {
           console.error(`Caught error in API ${error.stack}`)
           response.writeHead(400)
