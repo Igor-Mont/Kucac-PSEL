@@ -2,7 +2,7 @@ import { ServiceChallengeTwo } from "../../src/services/service-challenge-two";
 
 let service
 
-describe('Challenge One - SERVICE', () => {
+describe('Challenge Two - SERVICE', () => {
   beforeAll(() => {
     service = new ServiceChallengeTwo()
   })
