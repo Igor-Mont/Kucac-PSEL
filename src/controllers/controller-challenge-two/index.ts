@@ -7,7 +7,20 @@ class ControllerChallengeTwo {
     const service = new ServiceChallengeTwo()
     request
       .on('data', async data => {
-        const { amount, total } = JSON.parse(data)
+        const fields = JSON.parse(data)
+        const requiredFields = ['total', 'amount']
+
+        for (const field of requiredFields) {
+          if (!fields[field] && fields[field] !== 0) {
+            console.log(fields[field])
+            response.writeHead(400)
+            return response.end(JSON.stringify({
+              message: `Missing param: ${field}.`
+            }))
+          }
+        }
+  
+        const { amount, total } = fields
 
         try {
           const sell = await service.execute({ amount, total })

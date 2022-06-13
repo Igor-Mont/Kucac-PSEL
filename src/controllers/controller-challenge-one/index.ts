@@ -11,14 +11,16 @@ class ControllerChallengeOne {
         const requiredFields = ['start', 'end']
 
         for (const field of requiredFields) {
-          if (!fields[field]) {
+          if (!fields[field] && fields[field] !== 0) {
             response.writeHead(400)
             return response.end(JSON.stringify({
               message: `Missing param: ${field}.`
             }))
           }
         }
+
         const { start, end } = fields
+
         try {
           users = await service.execute({ start, end })
         } catch (error) {

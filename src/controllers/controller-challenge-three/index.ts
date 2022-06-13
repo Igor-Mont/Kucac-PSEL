@@ -6,8 +6,7 @@ class ControllerChallengeThree {
 
     const service = new ServiceChallengeThree()
     request
-      .on('data', async (data: any) => {
-        
+      .on('data', async (data: any) => {        
         try {
           const infosVehicle = JSON.parse(data)
           const infos = await service.execute(infosVehicle)

@@ -7,6 +7,13 @@ class ControllerChallengeFour {
     for await (const data of request) {
       try {
         const { ceps } = JSON.parse(data)
+
+        if(!ceps) {
+          response.writeHead(400)
+            return response.end(JSON.stringify({
+              message: 'Missing param: ceps.'
+            }))
+        }
         const infosCEPS = await service.execute(ceps)
         
         response.writeHead(200)
