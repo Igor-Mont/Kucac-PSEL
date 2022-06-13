@@ -1,5 +1,7 @@
-import { ControllerChallengeTwo } from './controllers/controller-challenge-two'
 import { ControllerChallengeOne } from './controllers/controller-challenge-one'
+import { ControllerChallengeTwo } from './controllers/controller-challenge-two'
+import { ControllerChallengeFour } from './controllers/controller-challenge-four'
+import { ControllerChallengeThree } from './controllers/controller-challenge-three'
 
 async function routes(request, response) {
   const { method, url } = request
@@ -18,6 +20,12 @@ async function routes(request, response) {
 
   if (method === 'POST' && url === '/challenges/two') {
     const controller = new ControllerChallengeTwo()
+
+    return controller.handle(request, response)
+  }
+
+  if (method === 'POST' && url === '/challenges/three') {
+    const controller = new ControllerChallengeThree()
 
     return controller.handle(request, response)
   }
