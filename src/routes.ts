@@ -9,25 +9,32 @@ async function routes(request, response) {
   if (method === 'GET' && url === '/') {
     response.writeHead(200)
 
-    return response.end('Processo Seletivo Kukac 📦')
+    return await response.end('Processo Seletivo Kukac 📦')
   }
 
   if (method === 'POST' && url === '/challenges/one') {
     const controller = new ControllerChallengeOne()
 
-    return controller.handle(request, response)
+    return await controller.handle(request, response)
   }
 
   if (method === 'POST' && url === '/challenges/two') {
     const controller = new ControllerChallengeTwo()
 
-    return controller.handle(request, response)
+    return await controller.handle(request, response)
   }
 
   if (method === 'POST' && url === '/challenges/three') {
     const controller = new ControllerChallengeThree()
 
-    return controller.handle(request, response)
+    return await controller.handle(request, response)
+  }
+
+
+  if (method === 'POST' && url === '/challenges/four') {
+    const controller = new ControllerChallengeFour()
+
+    return await controller.handle(request, response)
   }
 
   return response.end()
