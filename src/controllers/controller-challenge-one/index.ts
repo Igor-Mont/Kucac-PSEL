@@ -7,8 +7,18 @@ class ControllerChallengeOne {
     const service = new ServiceChallengeOne()
     request
       .on('data', async data => {
-        const { start, end } = JSON.parse(data)
+        const fields = JSON.parse(data)
+        const requiredFields = ['start', 'end']
 
+        for (const field of requiredFields) {
+          if (!fields[field]) {
+            response.writeHead(400)
+            return response.end(JSON.stringify({
+              message: `Missing param: ${field}.`
+            }))
+          }
+        }
+        const { start, end } = fields
         try {
           users = await service.execute({ start, end })
         } catch (error) {
